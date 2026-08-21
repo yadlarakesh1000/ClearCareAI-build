@@ -1,0 +1,12 @@
+com\clearcareai\common\PagedResponse.class
+com\clearcareai\config\AppConfig.class
+com\clearcareai\config\OmniDimProperties.class
+com\clearcareai\common\AppConstants.class
+com\clearcareai\config\CorsConfig.class
+com\clearcareai\exception\BadRequestException.class
+com\clearcareai\common\ApiResponse$ApiResponseBuilder.class
+com\clearcareai\exception\GlobalExceptionHandler.class
+com\clearcareai\common\ApiResponse.class
+com\clearcareai\exception\ResourceNotFoundException.class
+com\clearcareai\exception\UnauthorizedException.class
+com\clearcareai\ClearCareAiApplication.class
