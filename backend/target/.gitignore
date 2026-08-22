@@ -1,0 +1,8 @@
+target/
+*.class
+.idea/
+*.iml
+.vscode/
+
+# Local secrets (never commit)
+run-dev.local.cmd
