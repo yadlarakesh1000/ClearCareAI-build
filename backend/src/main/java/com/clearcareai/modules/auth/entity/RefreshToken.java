@@ -3,7 +3,7 @@ package com.clearcareai.modules.auth.entity;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Fetch;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

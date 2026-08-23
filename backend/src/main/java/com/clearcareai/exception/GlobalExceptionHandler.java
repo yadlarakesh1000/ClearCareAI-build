@@ -1,6 +1,8 @@
 package com.clearcareai.exception;
 
 import com.clearcareai.common.ApiResponse;
+import com.clearcareai.modules.auth.exception.AuthException;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -71,6 +73,12 @@ public class GlobalExceptionHandler {
         log.error("Data integrity violation: {}", ex.getMessage());
         return new ResponseEntity<>(ApiResponse.error("Duplicate or conflicting entry"), HttpStatus.CONFLICT);
     }
+     @ExceptionHandler(AuthException.class)
+    public ResponseEntity<ApiResponse<Object>> handleAuthException(AuthException ex) {
+        log.error("Authentication failed: {}", ex.getMessage());
+        return new ResponseEntity<>(ApiResponse.error("Authentication faied: " + ex.getMessage()), HttpStatus.FORBIDDEN);
+    }
+
 
     // the safety net: anything we didn't plan for
     @ExceptionHandler(Exception.class)
