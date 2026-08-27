@@ -27,5 +27,4 @@ public class JwtProperties {
   @Positive
   private Long refreshExpiration;
   
-
 }
