@@ -1,7 +1,7 @@
 package com.clearcareai.modules.security;
 
-import org.springframework.cglib.proxy.Dispatcher;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.stereotype.Component;
+
 import org.springframework.web.cors.CorsConfigurationSource;
 
 import com.clearcareai.common.ApiResponse;
@@ -26,12 +26,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@Component
+@Configuration
 @EnableWebSecurity
 public class SecurityConfig {
   private final JwtAuthenticationFilter jwtAuthenticationFilter;
   private final AuthEntryPoint authEntryPoint;
-  private final CorsConfigurationSource configurationSource;
+  private final CorsConfigurationSource corsConfigurationSource;
 
   @Bean
   public PasswordEncoder passwordEncoder(){
@@ -46,7 +46,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors(cors -> cors.configurationSource(configurationSource))
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
 
                
                 .csrf(csrf -> csrf.disable())
