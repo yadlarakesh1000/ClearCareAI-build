@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.clearcareai.modules.patient.entity.Patient;
 
-public interface PatientRepository extends JpaRepository<Long,Patient>{
+public interface PatientRepository extends JpaRepository<Patient,Long>{
   Optional<Patient> findByUserId(Long userId);
   boolean existsByUserId(Long userId);
 }
