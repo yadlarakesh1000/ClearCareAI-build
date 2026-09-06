@@ -7,8 +7,8 @@ import com.clearcareai.modules.doctor.exception.DoctorException;
 @Component
 public class DoctorValidator {
     public void validateProfileDoesNotExist(boolean profileExists){
-      if(!profileExists){
-        throw new DoctorException("Doctor profile not found");
+      if(profileExists){
+        throw new DoctorException("Doctor Profile already exists for this user");
       }
 
      }

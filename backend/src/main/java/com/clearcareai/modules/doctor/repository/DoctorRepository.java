@@ -14,7 +14,7 @@ import com.clearcareai.modules.doctor.entity.Doctor;
 public interface DoctorRepository extends JpaRepository<Doctor,Long> {
 
   Optional<Doctor> findByUserId(Long userId);
-  boolean exexistsByUserId(Long userId);
+  boolean existsByUserId(Long userId);
   Page<Doctor> findBySpecializationContainingIgnoreCase(String specialization,Pageable pageable);
   @Query("SELECT d FROM Doctor d JOIN d.user u "
             + "WHERE LOWER(d.specialization) LIKE LOWER(CONCAT('%', :search, '%')) "
