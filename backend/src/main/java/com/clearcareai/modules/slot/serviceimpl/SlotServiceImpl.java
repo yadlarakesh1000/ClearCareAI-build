@@ -71,7 +71,6 @@ public class SlotServiceImpl implements SlotService {
         return slotMapper.toResponseDto(saved);
 
   }
-
   @Override
   public List<SlotResponseDto> getSlotsByDoctor(Long doctorId, String dayOfWeek) {
     List<Slot>slots;
@@ -87,7 +86,6 @@ public class SlotServiceImpl implements SlotService {
     }
     return response;
   }
-
   @Override
   @Transactional
   public void deleteSlot(String email, Long id) {
