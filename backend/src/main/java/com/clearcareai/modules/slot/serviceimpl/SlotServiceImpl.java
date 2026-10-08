@@ -1,19 +1,22 @@
 package com.clearcareai.modules.slot.serviceimpl;
 
-import java.lang.StackWalker.Option;
+
 import java.time.DayOfWeek;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-
-import javax.print.Doc;
+import java.util.Set;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.clearcareai.exception.ResourceNotFoundException;
+import com.clearcareai.modules.Appointment.Repository.AppointmentRepository;
+import com.clearcareai.modules.Appointment.entity.Appointment;
 import com.clearcareai.modules.auth.entity.User;
 import com.clearcareai.modules.auth.repository.UserRepository;
 import com.clearcareai.modules.doctor.entity.Doctor;
@@ -35,6 +38,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SlotServiceImpl implements SlotService {
   private static final long MIN_DURATION_MINUTES = 15;
   private static final long MAX_DURATION_MINUTES = 60;
+  private final AppointmentRepository appointmentRepository;
   private final SlotRepository slotRepository;
   private final DoctorRepository doctorRepository;
   private final SlotMapper slotMapper;
@@ -44,17 +48,17 @@ public class SlotServiceImpl implements SlotService {
   public SlotResponseDto createSlot(String email, SlotRequestDto dto) {
                 Doctor doctor = getDoctorByEmail(email);
                 DayOfWeek dayOfWeek = DayOfWeek.valueOf(dto.getDayOfWeek());
-                if(!dto.getStarTime().isBefore(dto.getEndTime())){
+                if(!dto.getStartTime().isBefore(dto.getEndTime())){
                   throw new SlotException("start time must be before end time");
                 }
-            long durationMinutes = Duration.between(dto.getStarTime(),dto.getEndTime()).toMinutes();
+            long durationMinutes = Duration.between(dto.getStartTime(),dto.getEndTime()).toMinutes();
             if(durationMinutes<MIN_DURATION_MINUTES || durationMinutes>MAX_DURATION_MINUTES){
                throw new SlotException("Slot duration must be between 15 and 60 minutes");
             }
             List<Slot> existingSlots = slotRepository.findByDoctorIdAndDayOfWeekAndIsActiveTrue(doctor.getId(), dayOfWeek);
             boolean overlaps = false;
             for(Slot existing: existingSlots){
-              boolean newStartsBeforeExistingEnds = dto.getStarTime().isBefore(existing.getEndTime());
+              boolean newStartsBeforeExistingEnds = dto.getStartTime().isBefore(existing.getEndTime());
               boolean existingStartBeforeNewEnds = existing.getStartTime().isBefore(dto.getEndTime());
               if(newStartsBeforeExistingEnds && existingStartBeforeNewEnds){
                 overlaps=true;
@@ -67,6 +71,7 @@ public class SlotServiceImpl implements SlotService {
         Slot slot = slotMapper.toEntity(dto);
         slot.setDoctor(doctor);
         slot.setDayOfWeek(dayOfWeek);
+        slot.setIsActive(true);
         Slot saved = slotRepository.save(slot);
         return slotMapper.toResponseDto(saved);
 
@@ -116,5 +121,24 @@ public class SlotServiceImpl implements SlotService {
        Doctor doctor = doctorOptional.get();
        return doctor;
   }
+	@Override
+	public List<SlotResponseDto> getAvailableSlots(String email, Long doctorId, LocalDate date) {
+		    DayOfWeek dayOfWeek = date.getDayOfWeek();
+        List<Slot> slots = slotRepository.findByDoctorIdAndDayOfWeekAndIsActiveTrue(doctorId, dayOfWeek);
+        List<Appointment> appointmentsOnDate = appointmentRepository.findByDoctorIdAndAppointmentDate(doctorId, date);
+        Set<Long> activelyBookedSlotIds = new HashSet<>();
+        for(Appointment appointment : appointmentsOnDate){
+           if(Boolean.TRUE.equals(appointment.getActiveBooking())){
+            activelyBookedSlotIds.add(appointment.getSlot().getId());
+           }
+        }
+        List<SlotResponseDto> available = new ArrayList<>();
+        for(Slot slot:slots){
+          if(!activelyBookedSlotIds.contains(slot.getId())){
+            available.add(slotMapper.toResponseDto(slot));
+          }
+        }
+        return  available;
+	}
   
 }

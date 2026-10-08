@@ -69,7 +69,7 @@ public class AppointmentController {
      return ApiResponse.success("Appointments Retrived", response);
   }          
 
-  @GetMapping ("/{id")
+  @GetMapping ("/{id}")
   public ApiResponse<AppointmentResponseDto> getAppointmentById(
     @PathVariable Long id,Authentication authentication
   ){

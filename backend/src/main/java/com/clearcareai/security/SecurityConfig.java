@@ -1,4 +1,4 @@
-package com.clearcareai.modules.security;
+package com.clearcareai.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,10 +45,7 @@ public class SecurityConfig {
   
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource))
-
-               
+        http.cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .csrf(csrf -> csrf.disable())
 
                 .exceptionHandling(ex -> ex

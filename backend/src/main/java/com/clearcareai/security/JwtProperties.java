@@ -1,4 +1,4 @@
-package com.clearcareai.modules.security;
+package com.clearcareai.security;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

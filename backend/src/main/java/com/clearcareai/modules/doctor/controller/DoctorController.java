@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
-@RequestMapping("api/patients")
+@RequestMapping("api/doctors")
 @RequiredArgsConstructor
 public class DoctorController {
     private final DoctorService doctorService;

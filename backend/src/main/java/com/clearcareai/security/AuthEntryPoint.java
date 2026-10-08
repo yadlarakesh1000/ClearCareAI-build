@@ -1,4 +1,4 @@
-package com.clearcareai.modules.security;
+package com.clearcareai.security;
 
 import java.io.IOException;
 

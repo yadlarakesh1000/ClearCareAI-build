@@ -11,8 +11,10 @@ import com.clearcareai.modules.slot.service.SlotService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,6 +50,14 @@ public class SlotController {
         slotService.deleteSlot(authentication.getName(), id);
       return ApiResponse.success("slot deleted ", null);
    }
-  
+  @GetMapping("/available")
+  public ApiResponse<List<SlotResponseDto>> getAvailable( @RequestParam  Long doctorId,
+                                                    @RequestParam @DateTimeFormat (iso = DateTimeFormat.ISO.DATE) LocalDate date,
+                                                     Authentication authentication
+                                                    
+  ){
+    List<SlotResponseDto> response = slotService.getAvailableSlots(authentication.getName(), doctorId, date);
+    return  ApiResponse.success("Available slots retrived", response);
+  }
   
 }

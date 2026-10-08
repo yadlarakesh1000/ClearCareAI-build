@@ -24,7 +24,7 @@ import com.clearcareai.modules.auth.entity.User;
 import com.clearcareai.modules.auth.repository.RefreshTokenRepository;
 import com.clearcareai.modules.auth.repository.UserRepository;
 import com.clearcareai.modules.auth.service.AuthService;
-import com.clearcareai.modules.security.JwtTokenProvider;
+import com.clearcareai.security.JwtTokenProvider;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -110,6 +110,9 @@ public class AuthServiceImpl implements AuthService{
         token.setIsRevoked(true);
         refreshTokenRepository.save(token);
         User user = token.getUser();
+        if(!Boolean.TRUE.equals(user.getIsActive())){
+            throw new UnauthorizedException("Account has been deactivated");
+        }
         return buildAuthResponse(user);
 
   }
