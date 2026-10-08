@@ -16,7 +16,7 @@ public class SlotResponseDto {
   private Long id;
   private Long doctorId;
   private String dayOfWeek;
-  private LocalTime starTime;
+  private LocalTime startTime;
   private LocalTime endTime;
   private Boolean isActive;
 }

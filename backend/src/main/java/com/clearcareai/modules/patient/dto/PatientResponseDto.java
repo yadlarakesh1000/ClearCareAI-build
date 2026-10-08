@@ -22,5 +22,5 @@ public class PatientResponseDto {
         private String gender;
         private String bloodGroup;
         private String address;
-        private String medicalHisotry;
+        private String medicalHistory;
 }

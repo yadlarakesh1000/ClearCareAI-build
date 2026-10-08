@@ -39,11 +39,11 @@ public class Doctor {
   @Column(nullable=false,length = 200)
   private String qualification;
   @Column(nullable = false,name = "experience_years")
-  private Integer experience;
+  private Integer experienceYears;
   @Column(columnDefinition = "TEXT")
   private String bio;
     @Column(nullable = false,name="consultation_fee",precision = 10,scale = 2)
-  private BigDecimal consultationfee;
+  private BigDecimal consultationFee;
   @Column(name = "is_available",nullable = false)
   @Builder.Default()
   private Boolean isAvailable=true;

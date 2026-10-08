@@ -52,7 +52,7 @@ public class Consultation {
   private Patient patient;
   
    @Column(columnDefinition = "TEXT")
-  private String dianosis;
+  private String diagnosis;
    @Column(columnDefinition = "TEXT")
   private String prescription;
    @Column(columnDefinition = "TEXT")
