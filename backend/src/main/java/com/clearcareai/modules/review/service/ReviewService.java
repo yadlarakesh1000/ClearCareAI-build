@@ -9,7 +9,7 @@ import com.clearcareai.modules.review.dto.ReviewResponseDto;
 public interface ReviewService {
     
   ReviewResponseDto createTextReview(String email,ReviewRequestDto request);
-  PagedResponse<ReviewResponseDto> getReviewByDoctor(Long doctorId,int page,int size);
+  PagedResponse<ReviewResponseDto> getReviewsByDoctor(Long doctorId,int page,int size);
   PagedResponse<ReviewResponseDto> getMyReviews(String email, int page, int size);
   ReviewResponseDto getReviewById(String email,Long id);
   ReviewResponseDto processReview(Long id,ReviewProcessRequest request);

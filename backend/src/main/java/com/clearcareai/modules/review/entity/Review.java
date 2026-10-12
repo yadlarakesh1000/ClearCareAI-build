@@ -49,7 +49,7 @@ public class Review {
   @JoinColumn (name = "doctor_id",nullable = false)
   private Doctor doctor;
 
-  private Long rating;
+  private Integer rating;
   @Column(columnDefinition = "TEXT",name = "raw_transcript")
   private  String rawTranscript;
 

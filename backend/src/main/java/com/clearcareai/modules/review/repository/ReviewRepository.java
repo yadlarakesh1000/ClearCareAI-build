@@ -16,7 +16,7 @@ import com.clearcareai.modules.review.entity.Review;
 public interface ReviewRepository  extends  JpaRepository<Review,Long>{
   
      Optional<Review> findByConsultationId(Long consultationId);
-     boolean exiexistsByConsultationId(Long consultationId);
+     boolean existsByConsultationId(Long consultationId);
      Page<Review> findByPatientId(Long patientId, Pageable pageable);
      Page<Review> findByDoctorId(Long doctorId,Pageable pageable);
 
@@ -24,7 +24,8 @@ public interface ReviewRepository  extends  JpaRepository<Review,Long>{
      List<Review> findByStatusAndSourceAndCallAttemptsLessThan(Review.Status status, Review.Source source, int maxAttempts);
 
      Page<Review> findByIsFlaggedTrue(Pageable pageable);
-     long coucountByIsFlaggedTrue();
+     long countByIsFlaggedTrue();
+     long countByDoctorIdAndStatus(Long doctorId, Review.Status status);
      long countByDoctorIdAndSentiment(Long doctorId,Review.Sentiment sentiment);
      long countBySource(Review.Source source);
      List<Review> findTop5ByDoctorIdAndOrderByCreatedAtDesc(Long doctorId);

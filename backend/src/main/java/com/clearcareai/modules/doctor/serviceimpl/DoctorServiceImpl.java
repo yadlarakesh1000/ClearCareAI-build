@@ -11,6 +11,9 @@ import com.clearcareai.modules.doctor.mapper.DoctorMapper;
 import com.clearcareai.modules.doctor.repository.DoctorRepository;
 import com.clearcareai.modules.doctor.service.DoctorService;
 import com.clearcareai.modules.doctor.validator.DoctorValidator;
+import com.clearcareai.modules.review.entity.Review;
+import com.clearcareai.modules.review.repository.ReviewRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
@@ -34,6 +37,7 @@ public class DoctorServiceImpl implements DoctorService {
   private final DoctorMapper doctorMapper;
   private final UserRepository userRepository;
   private final DoctorValidator doctorValidator;
+  private final ReviewRepository reviewRepository;
   @Override
   @Transactional
   @CacheEvict(allEntries = true,cacheNames="doctors"
@@ -125,8 +129,10 @@ public class DoctorServiceImpl implements DoctorService {
     }
      private DoctorResponseDto toResponseDtoWithRatings(Doctor doctor) {
        DoctorResponseDto response = doctorMapper.toResponseDto(doctor);
-          response.setAverageRating(0.0);
-          response.setTotalReviews(0L);
+         Double averageRating = reviewRepository.findAverageRatingByDoctorId(doctor.getId());
+         response.setAverageRating(averageRating==null ?0.0: Math.round(averageRating*10.0)/10.0);
+         response.setTotalReviews(reviewRepository.countByDoctorIdAndStatus(doctor.getId(),Review.Status.COMPLETED ));
+         
           return response;
 
   }
