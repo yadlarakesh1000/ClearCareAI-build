@@ -68,7 +68,7 @@ public class ConsultationServiceImpli implements ConsultationService {
         if(appointment.getStatus()!=Appointment.Status.BOOKED){
                      throw new ConsultationException("Consultation only be created for only a Booked Appointment");
         }
-        if (consultationRepository.existsByAppointmemtId(appointment.getId())) {
+        if (consultationRepository.existsByAppointmentId(appointment.getId())) {
              throw new ConsultationException("Consultation already exist for this appointment");
         }
         Consultation consultation = Consultation.builder().appointment(appointment).doctor(doctor).patient(appointment.getPatient()).status(Consultation.Status.IN_PROGRESS).build();

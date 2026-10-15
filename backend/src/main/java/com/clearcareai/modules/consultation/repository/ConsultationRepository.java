@@ -10,7 +10,7 @@ import com.clearcareai.modules.consultation.entity.Consultation;
 
 public interface ConsultationRepository extends JpaRepository<Consultation,Long> {
   Optional<Consultation> findByAppointmentId(Long appointmentId);
-  boolean existsByAppointmemtId(Long appointmentId);
+  boolean existsByAppointmentId(Long appointmentId);
  List<Consultation> findByStatusAndUpdatedAtBefore(Consultation.Status Status, LocalDateTime cutoff);
   
 }

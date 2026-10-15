@@ -45,7 +45,8 @@ public class Review {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn (name = "patient_id",nullable = false)
   private Patient patient;
-
+  
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn (name = "doctor_id",nullable = false)
   private Doctor doctor;
 
@@ -75,7 +76,7 @@ private String omnidimCallId;
 
 @Column (name = "call_attempts")
 @Builder.Default
-private Integer callAttemepts=0;
+private Integer callAttempts=0;
 
 @Column (name="last_call_at")
 private LocalDateTime lastCallAt;

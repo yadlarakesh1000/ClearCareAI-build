@@ -28,7 +28,7 @@ public interface ReviewRepository  extends  JpaRepository<Review,Long>{
      long countByDoctorIdAndStatus(Long doctorId, Review.Status status);
      long countByDoctorIdAndSentiment(Long doctorId,Review.Sentiment sentiment);
      long countBySource(Review.Source source);
-     List<Review> findTop5ByDoctorIdAndOrderByCreatedAtDesc(Long doctorId);
+     List<Review> findTop5ByDoctorIdOrderByCreatedAtDesc(Long doctorId);
 
      @Query("SELECT AVG(r.rating) FROM Review r WHERE r.doctor.id = :doctorId AND r.status = 'COMPLETED'")
     Double findAverageRatingByDoctorId(@Param("doctorId") Long doctorId);
