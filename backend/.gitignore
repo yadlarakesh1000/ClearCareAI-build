@@ -1,1 +1,6 @@
 target/
+.classpath
+.factorypath
+.project
+.settings/
+src/main/java/META-INF/
