@@ -1,16 +1,15 @@
 package com.clearcareai.modules.analytics.contoller;
 
 import org.springframework.security.core.Authentication;
-
-import com.clearcareai.common.response.ApiResponse;
+import com.clearcareai.common.ApiResponse;
 import com.clearcareai.modules.analytics.service.AnalyticsService;
 import com.clearcareai.modules.analytics.dto.DoctorAnalyticsDto;
 import com.clearcareai.modules.analytics.dto.PlatformAnalyticsDto;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
 import lombok.RequiredArgsConstructor;
 
 

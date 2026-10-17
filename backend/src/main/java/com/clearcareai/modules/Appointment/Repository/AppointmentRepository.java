@@ -10,13 +10,38 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.clearcareai.modules.Appointment.entity.Appointment;
 
 public interface AppointmentRepository extends JpaRepository<Appointment,Long>{
-      Page<Appointment> findByPatientId(Long patientId,Pageable pageable);
-      Page<Appointment> findByPatientIdAndStatus(Long patientId,Appointment.Status status,Pageable pageable);
-       Page<Appointment> findByDoctorId(Long doctorId,Pageable pageable);
-       Page<Appointment> findByDoctorIdAndStatus(Long doctorId,Appointment.Status status,Pageable pageable);
-      Page<Appointment> findByDoctorIdAndAppointmentDate(Long doctorId,LocalDate appointmentDate,Pageable pageable);
-      Page<Appointment> findByDoctorIdAndStatusAndAppointmentDate(Long doctorId,Appointment.Status status,LocalDate appointmentDate,Pageable pageable);
-      List<Appointment> findByPatientIdAndAppointmentDateAndStatus(Long patientId,LocalDate appointmentDate,Appointment.Status status);
-      List<Appointment> findByDoctorIdAndAppointmentDate(Long doctorId,LocalDate appointmentDate);
-     boolean existsByDoctorIdAndSlotIdAndAppointmentDateAndActiveBookingIsTrue(Long doctorId,Long slotId,LocalDate appointmentDate); 
+     
+    Page<Appointment> findByPatientId(Long patientId, Pageable pageable);
+
+    Page<Appointment> findByPatientIdAndStatus(Long patientId, Appointment.Status status, Pageable pageable);
+
+    Page<Appointment> findByDoctorId(Long doctorId, Pageable pageable);
+
+    Page<Appointment> findByDoctorIdAndStatus(Long doctorId, Appointment.Status status, Pageable pageable);
+
+    Page<Appointment> findByDoctorIdAndAppointmentDate(Long doctorId, LocalDate appointmentDate, Pageable pageable);
+
+    Page<Appointment> findByDoctorIdAndStatusAndAppointmentDate(Long doctorId, Appointment.Status status,
+                                                                 LocalDate appointmentDate, Pageable pageable);
+
+    List<Appointment> findByPatientIdAndAppointmentDateAndStatus(Long patientId, LocalDate appointmentDate,
+                                                                  Appointment.Status status);
+
+    List<Appointment> findByDoctorIdAndAppointmentDate(Long doctorId, LocalDate appointmentDate);
+
+    boolean existsByDoctorIdAndSlotIdAndAppointmentDateAndActiveBookingIsTrue(Long doctorId, Long slotId, LocalDate appointmentDate);
+
+    long countByDoctorId(Long doctorId);
+
+    long countByDoctorIdAndStatus(Long doctorId, Appointment.Status status);
+
+    long countByDoctorIdAndAppointmentDateBetween(Long doctorId, LocalDate startDate, LocalDate endDate);
+
+    long countByStatus(Appointment.Status status);
+
+    Page<Appointment> findByStatus(Appointment.Status status, Pageable pageable);
+
+    Page<Appointment> findByAppointmentDate(LocalDate appointmentDate, Pageable pageable);
+
+    Page<Appointment> findByStatusAndAppointmentDate(Appointment.Status status, LocalDate appointmentDate, Pageable pageable);
 }

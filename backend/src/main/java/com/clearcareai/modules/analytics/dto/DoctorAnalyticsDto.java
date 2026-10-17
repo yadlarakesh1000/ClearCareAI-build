@@ -20,7 +20,7 @@ public class DoctorAnalyticsDto{
     private long cancelledAppointments;
     private long totalReviews;
     private double averageRating;
-    private Map<String,Long> sentimentBreakDown;
+    private Map<String,Long> sentimentBreakdown;
     private long monthlyAppointments;
     private Map<String,Long> monthlyBreakdown;
     private List<ReviewResponseDto> recentReviews;

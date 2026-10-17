@@ -2,15 +2,32 @@ package com.clearcareai.modules.analytics.serviceimpl;
 
 import com.clearcareai.modules.analytics.service.AnalyticsService;
 import org.springframework.stereotype.Service;
+import com.clearcareai.modules.doctor.repository.DoctorRepository;
+import com.clearcareai.modules.Appointment.Repository.AppointmentRepository;
+import com.clearcareai.modules.review.repository.ReviewRepository;
+import com.clearcareai.modules.auth.repository.UserRepository;
+import com.clearcareai.modules.review.mapper.ReviewMapper;
+import com.clearcareai.modules.doctor.entity.Doctor;
+import com.clearcareai.modules.auth.entity.User;
+import com.clearcareai.modules.Appointment.entity.Appointment;
+import com.clearcareai.modules.review.entity.Review;
+import com.clearcareai.modules.analytics.dto.DoctorAnalyticsDto;
+import com.clearcareai.modules.analytics.dto.PlatformAnalyticsDto;
+import com.clearcareai.modules.review.dto.ReviewResponseDto;
+import com.clearcareai.exception.ResourceNotFoundException;
+import org.springframework.security.access.AccessDeniedException;
+import java.time.YearMonth;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
 public class AnalyticsServiceImpl implements AnalyticsService {
       private final DoctorRepository doctorRepository;
-      private final PatientRepository patientRepository;
       private final AppointmentRepository appointmentRepository;
       private final ReviewRepository reviewRepository;
       private final UserRepository userRepository;
@@ -24,11 +41,11 @@ public class AnalyticsServiceImpl implements AnalyticsService {
                  if(!doctor.getUser().getId().equals(user.getId())){
                     throw new AccessDeniedException("You can only view your own analytics");
                  }
-                 int totalAppointments =appointmentRepository.countByDoctorId(doctorId);
-                 int completedAppointments = appointmentRepository.countByDoctorIdAndStatus(doctorId, Appointment.Status.COMPLETED);
-                 int cancelledAppointments = appointmentRepository.countByDoctorIdAndStatus(doctorId, Appointment.Status.CANCELLED);
-                 int totalReviews = reviewRepository.countByDoctorId(doctorId);
-                 double averageRating = roundToOneDecimal(reviewRepository.findAverageRatingsByDoctorId(doctorId));
+                 long totalAppointments =appointmentRepository.countByDoctorId(doctorId);
+                 long completedAppointments = appointmentRepository.countByDoctorIdAndStatus(doctorId, Appointment.Status.COMPLETED);
+                  long cancelledAppointments = appointmentRepository.countByDoctorIdAndStatus(doctorId, Appointment.Status.CANCELLED);
+                  long totalReviews = reviewRepository.countByDoctorIdAndStatus(doctorId, Review.Status.COMPLETED);
+                  double averageRating = roundToOneDecimal(reviewRepository.findAverageRatingByDoctorId(doctorId));
                    Map<String, Long> sentimentBreakdown = new LinkedHashMap<>();
         sentimentBreakdown.put("positive",
                 reviewRepository.countByDoctorIdAndSentiment(doctorId, Review.Sentiment.POSITIVE));
