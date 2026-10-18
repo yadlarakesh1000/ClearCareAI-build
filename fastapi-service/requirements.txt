@@ -1,0 +1,8 @@
+# Regenerate requirements.lock.txt with: python -m pip freeze > requirements.lock.txt
+fastapi==0.143.5
+uvicorn==0.54.0
+google-generativeai==0.8.6
+httpx==0.28.1
+pydantic==2.14.1
+pydantic-settings==2.16.0
+python-dotenv==1.2.4

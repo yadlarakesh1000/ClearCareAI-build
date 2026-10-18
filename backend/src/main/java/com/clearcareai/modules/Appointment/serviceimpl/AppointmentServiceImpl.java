@@ -78,7 +78,7 @@ public class AppointmentServiceImpl implements  AppointmentService{
          appointment.setActiveBooking(Boolean.TRUE);
       Appointment saved  = appointmentRepository.save(appointment);
       log.info("created appointment{} for patient {} with doctor{}",saved.getId(),saved.getPatient(),saved.getDoctor());
-      return appointmentMapper.toResponseDto(appointment);
+      return appointmentMapper.toResponseDto(saved);
      }
      @Override
      public PagedResponse<AppointmentResponseDto> getMyAppointments(String email, String status, int page, int size) {

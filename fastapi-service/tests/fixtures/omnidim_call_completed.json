@@ -1,0 +1,23 @@
+{
+  "_comment": "RECONSTRUCTED, NOT CAPTURED. Built from schemas.py's documented field list and INTEGRATION_LEARNINGS.md P1/P5/P10. The id ranges are the real observed ones: call_request_id ~5.09M, call_id ~5.47M. REPLACE THIS FILE with a genuine body copied from the ngrok inspector at http://127.0.0.1:4040 during phase I1.",
+  "call_id":5471382,
+  "call_request_id":5094117,
+  "call_status":"completed",
+  "call_duration":96,
+  "bot_id":4471,
+    "from_number": "+911140000000",
+  "to_number": "+919876543210",
+  "interactions": [],
+  "call_report": {
+    "summary": "The patient was satisfied with the consultation and is recovering well.",
+    "sentiment": "positive",
+    "full_conversation": "Agent: How was your experience with the doctor today? Patient: it were very good doctor explain everything nicely. Agent: On a scale of 1 to 5 how would you rate your consultation? Patient: i would say four point five. Agent: Would you recommend this doctor to others? Patient: yes definitely.",
+    "extracted_variables": {
+      "rating": "4.5",
+      "recovered": "PARTIAL",
+      "recommend_doctor": "TRUE",
+      "patient_feedback": "Doctor explained everything nicely and was patient with questions.",
+      "improvement_suggestions": "NA"
+    }
+  }
+}
