@@ -1,4 +1,4 @@
-package com.clearcareai.modules.analytics.contoller;
+package com.clearcareai.modules.analytics.controller;
 
 import org.springframework.security.core.Authentication;
 import com.clearcareai.common.ApiResponse;
@@ -20,7 +20,7 @@ public class AnalyticsController {
 
       private final AnalyticsService analyticsService;
 
-      @GetMapping("/doctor")
+      @GetMapping("/doctor/{doctorId}")
       public ApiResponse<DoctorAnalyticsDto> getDoctorAnalytics(@PathVariable Long doctorId,Authentication authentication) {
               DoctorAnalyticsDto response  = analyticsService.getDoctorAnalytics(authentication.getName(),doctorId);
                return ApiResponse.success("Doctor analytics fetched successfully",response);

@@ -1,4 +1,4 @@
-package com.clearcareai.modules.Appointment.validator;
+package com.clearcareai.modules.appointment.validator;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.clearcareai.modules.Appointment.entity.Appointment;
-import com.clearcareai.modules.Appointment.exception.AppointmentException;
+import com.clearcareai.modules.appointment.entity.Appointment;
+import com.clearcareai.modules.appointment.exception.AppointmentException;
 import com.clearcareai.modules.slot.entity.Slot;
 
 @Component 

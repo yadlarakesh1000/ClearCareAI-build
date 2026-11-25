@@ -1,4 +1,4 @@
-package com.clearcareai.modules.Appointment.entity;
+package com.clearcareai.modules.appointment.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

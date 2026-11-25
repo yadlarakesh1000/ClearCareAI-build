@@ -1,10 +1,10 @@
-package com.clearcareai.modules.Appointment.service;
+package com.clearcareai.modules.appointment.service;
 
 import java.time.LocalDate;
 
 import com.clearcareai.common.PagedResponse;
-import com.clearcareai.modules.Appointment.dto.AppointmentRequestDto;
-import com.clearcareai.modules.Appointment.dto.AppointmentResponseDto;
+import com.clearcareai.modules.appointment.dto.AppointmentRequestDto;
+import com.clearcareai.modules.appointment.dto.AppointmentResponseDto;
 
 public interface AppointmentService {
 

@@ -1,4 +1,4 @@
-package com.clearcareai.modules.Appointment.dto;
+package com.clearcareai.modules.appointment.dto;
 
 import java.time.LocalDate;
 

@@ -76,7 +76,7 @@ public class GlobalExceptionHandler {
      @ExceptionHandler(AuthException.class)
     public ResponseEntity<ApiResponse<Object>> handleAuthException(AuthException ex) {
         log.error("Authentication failed: {}", ex.getMessage());
-        return new ResponseEntity<>(ApiResponse.error("Authentication faied: " + ex.getMessage()), HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(ApiResponse.error("Authentication failed: " + ex.getMessage()), HttpStatus.FORBIDDEN);
     }
 
 
@@ -84,6 +84,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Object>> handleGenericException(Exception ex) {
         log.error("Internal server error: {}", ex.getMessage(), ex);
-        return new ResponseEntity<>(ApiResponse.error("An unexpected error occurred: " + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        // the full error is in the log above; the client gets no internal details
+        return new ResponseEntity<>(ApiResponse.error("An unexpected error occurred. Please try again later."), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

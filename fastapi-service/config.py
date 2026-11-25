@@ -10,7 +10,7 @@ class Settings(BaseSettings):
   omnidim_webhook_secret: SecretStr = SecretStr("")
   # Keep this configurable because Google can retire model names.
   gemini_model: str = "gemini-2.0-flash"
-  spring_boot_url: str = "http://localhost:8080"
+  spring_boot_url: str = "http://localhost:8081"
   gemini_timeout_seconds: float = Field(default=30.0, gt=0)
   spring_timeout_seconds: float = Field(default=10.0, gt=0)
   webhook_timestamp_tolerance_seconds: int = Field(default=300, gt=0)

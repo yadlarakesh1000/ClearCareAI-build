@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController 
 @RequiredArgsConstructor 
-@RequestMapping("api/consultation")
+@RequestMapping("/api/consultations")
 public class ConsultationController {
  private final ConsultationService consultationService;
 
@@ -42,6 +42,15 @@ public class ConsultationController {
   }
   
   
+    // saves diagnosis, prescription and notes while the consultation is open
+    @PutMapping("/{id}")
+    public ApiResponse<ConsultationResponseDto> updateConsultation(@PathVariable Long id,
+                                                                   @RequestBody @Valid ConsultationRequestDto request,
+                                                                   Authentication authentication) {
+        ConsultationResponseDto response = consultationService.updateConsultation(authentication.getName(), id, request);
+        return ApiResponse.success("Consultation updated", response);
+    }
+
     @PutMapping("/{id}/complete")
     public ApiResponse<ConsultationResponseDto> completeConsultation(@PathVariable Long id, Authentication authentication) {
         ConsultationResponseDto response = consultationService.completeConsultation(authentication.getName(), id);

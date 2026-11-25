@@ -7,8 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.clearcareai.exception.ResourceNotFoundException;
-import com.clearcareai.modules.Appointment.Repository.AppointmentRepository;
-import com.clearcareai.modules.Appointment.entity.Appointment;
+import com.clearcareai.modules.appointment.repository.AppointmentRepository;
+import com.clearcareai.modules.appointment.entity.Appointment;
 import com.clearcareai.modules.auth.entity.User;
 import com.clearcareai.modules.auth.repository.UserRepository;
 import com.clearcareai.modules.consultation.dto.ConsultationRequestDto;
@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service 
 @RequiredArgsConstructor 
 @Slf4j 
-public class ConsultationServiceImpli implements ConsultationService {
+public class ConsultationServiceImpl implements ConsultationService {
     private final ConsultationRepository consultationRepository;
     private final AppointmentRepository appointmentRepository;
     private final ConsultationMapper consultationMapper;

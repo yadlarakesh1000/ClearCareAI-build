@@ -1,11 +1,11 @@
-package com.clearcareai.modules.Appointment.mapper;
+package com.clearcareai.modules.appointment.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import com.clearcareai.modules.Appointment.dto.AppointmentRequestDto;
-import com.clearcareai.modules.Appointment.dto.AppointmentResponseDto;
-import com.clearcareai.modules.Appointment.entity.Appointment;
+import com.clearcareai.modules.appointment.dto.AppointmentRequestDto;
+import com.clearcareai.modules.appointment.dto.AppointmentResponseDto;
+import com.clearcareai.modules.appointment.entity.Appointment;
 
 @Mapper(componentModel = "spring")
 public interface AppointmentMapper {

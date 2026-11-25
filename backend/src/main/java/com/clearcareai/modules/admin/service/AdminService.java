@@ -4,7 +4,7 @@ import com.clearcareai.common.PagedResponse;
 import com.clearcareai.modules.admin.dto.AdminDashboardDto;
 import com.clearcareai.modules.admin.dto.AdminUserDto;
 import com.clearcareai.modules.doctor.dto.DoctorResponseDto;
-import com.clearcareai.modules.Appointment.dto.AppointmentResponseDto;
+import com.clearcareai.modules.appointment.dto.AppointmentResponseDto;
 import com.clearcareai.modules.review.dto.ReviewResponseDto;
 import java.time.LocalDate;
 

@@ -35,7 +35,7 @@ public class ReviewController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public ApiResponse<ReviewResponseDto> Create(@RequestBody  @Valid Authentication authentication, ReviewRequestDto request ) {
+    public ApiResponse<ReviewResponseDto> Create(@RequestBody @Valid ReviewRequestDto request, Authentication authentication) {
         ReviewResponseDto response =reviewService.createTextReview(authentication.getName(), request);
         
         return ApiResponse.success("Review submitted", response);

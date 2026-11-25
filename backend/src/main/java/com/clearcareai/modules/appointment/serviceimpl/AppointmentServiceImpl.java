@@ -1,4 +1,4 @@
-package com.clearcareai.modules.Appointment.serviceimpl;
+package com.clearcareai.modules.appointment.serviceimpl;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,14 +15,14 @@ import org.springframework.util.StringUtils;
 
 import com.clearcareai.common.PagedResponse;
 import com.clearcareai.exception.ResourceNotFoundException;
-import com.clearcareai.modules.Appointment.Repository.AppointmentRepository;
-import com.clearcareai.modules.Appointment.dto.AppointmentRequestDto;
-import com.clearcareai.modules.Appointment.dto.AppointmentResponseDto;
-import com.clearcareai.modules.Appointment.entity.Appointment;
-import com.clearcareai.modules.Appointment.exception.AppointmentException;
-import com.clearcareai.modules.Appointment.mapper.AppointmentMapper;
-import com.clearcareai.modules.Appointment.service.AppointmentService;
-import com.clearcareai.modules.Appointment.validator.AppointmentValidator;
+import com.clearcareai.modules.appointment.repository.AppointmentRepository;
+import com.clearcareai.modules.appointment.dto.AppointmentRequestDto;
+import com.clearcareai.modules.appointment.dto.AppointmentResponseDto;
+import com.clearcareai.modules.appointment.entity.Appointment;
+import com.clearcareai.modules.appointment.exception.AppointmentException;
+import com.clearcareai.modules.appointment.mapper.AppointmentMapper;
+import com.clearcareai.modules.appointment.service.AppointmentService;
+import com.clearcareai.modules.appointment.validator.AppointmentValidator;
 import com.clearcareai.modules.auth.entity.User;
 import com.clearcareai.modules.auth.repository.UserRepository;
 import com.clearcareai.modules.doctor.entity.Doctor;

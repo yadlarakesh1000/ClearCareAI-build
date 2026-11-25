@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.clearcareai.exception.ResourceNotFoundException;
-import com.clearcareai.modules.Appointment.Repository.AppointmentRepository;
-import com.clearcareai.modules.Appointment.entity.Appointment;
+import com.clearcareai.modules.appointment.repository.AppointmentRepository;
+import com.clearcareai.modules.appointment.entity.Appointment;
 import com.clearcareai.modules.auth.entity.User;
 import com.clearcareai.modules.auth.repository.UserRepository;
 import com.clearcareai.modules.doctor.entity.Doctor;

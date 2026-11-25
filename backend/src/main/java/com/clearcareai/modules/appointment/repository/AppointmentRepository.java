@@ -1,4 +1,4 @@
-package com.clearcareai.modules.Appointment.Repository;
+package com.clearcareai.modules.appointment.repository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.clearcareai.modules.Appointment.entity.Appointment;
+import com.clearcareai.modules.appointment.entity.Appointment;
 
 public interface AppointmentRepository extends JpaRepository<Appointment,Long>{
      

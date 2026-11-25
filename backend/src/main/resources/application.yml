@@ -7,10 +7,12 @@ spring:
     password: ${DB_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
+    hibernate:
+      # no schema changes by default; the dev profile switches this to "update"
+      ddl-auto: none
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
-        ddl-uto: update
   task:
     scheduling:
       pool:
@@ -46,6 +48,11 @@ app:
     base-url: ${OMNIDIM_BASE_URL:https://backend.omnidim.io/api/v1}
   fastapi:
     base-url: ${FASTAPI_URL:http://localhost:8000}
+  # shared secret FastAPI sends in the X-Internal-Secret header.
+  # enabled=false means the check is skipped (local dev and tests).
+  internal-secret:
+    value: ${INTERNAL_API_SECRET:}
+    enabled: ${INTERNAL_SECRET_ENABLED:false}
   voicereview:
     initial-delay-days: ${VOICE_REVIEW_DELAY_DAYS:7}
     retry-gap-hours: ${VOICE_REVIEW_RETRY_GAP_HOURS:1}

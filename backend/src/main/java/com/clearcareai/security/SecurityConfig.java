@@ -30,6 +30,7 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 public class SecurityConfig {
   private final JwtAuthenticationFilter jwtAuthenticationFilter;
+  private final InternalSecretFilter internalSecretFilter;
   private final AuthEntryPoint authEntryPoint;
   private final CorsConfigurationSource corsConfigurationSource;
 
@@ -70,7 +71,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/doctors/{id}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/reviews/doctor/{id}").permitAll()
 
-                        
+                        // internal endpoints called by FastAPI (no JWT). They are guarded by
+                        // InternalSecretFilter, which checks the X-Internal-Secret header.
                         .requestMatchers(HttpMethod.PUT, "/api/reviews/{id}/process").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/reviews/by-call-id/**").permitAll()
 
@@ -105,7 +107,9 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
               
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                // runs before the JWT filter: checks the shared secret on the internal review endpoints
+                .addFilterBefore(internalSecretFilter, JwtAuthenticationFilter.class);
 
         return http.build();
     }

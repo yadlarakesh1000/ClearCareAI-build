@@ -1,4 +1,4 @@
-package com.clearcareai.modules.Appointment.controller;
+package com.clearcareai.modules.appointment.controller;
 
 import java.net.URI;
 import java.time.LocalDate;
@@ -19,21 +19,21 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.clearcareai.common.ApiResponse;
 import com.clearcareai.common.AppConstants;
 import com.clearcareai.common.PagedResponse;
-import com.clearcareai.modules.Appointment.dto.AppointmentRequestDto;
-import com.clearcareai.modules.Appointment.dto.AppointmentResponseDto;
-import com.clearcareai.modules.Appointment.service.AppointmentService;
+import com.clearcareai.modules.appointment.dto.AppointmentRequestDto;
+import com.clearcareai.modules.appointment.dto.AppointmentResponseDto;
+import com.clearcareai.modules.appointment.service.AppointmentService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController 
 @RequiredArgsConstructor 
-@RequestMapping("api/appointment")
+@RequestMapping("/api/appointments")
 public class AppointmentController {
   
   private final AppointmentService appointmentService;
   @PostMapping()
-  public ResponseEntity<ApiResponse<AppointmentResponseDto>> createAppointment(@Valid @RequestBody Authentication authentication, AppointmentRequestDto dto){
+  public ResponseEntity<ApiResponse<AppointmentResponseDto>> createAppointment(@Valid @RequestBody AppointmentRequestDto dto, Authentication authentication){
         AppointmentResponseDto response  = appointmentService.createAppointment(authentication.getName(), dto);
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/appointments/{id}").buildAndExpand(response.getId()).toUri();
         return ResponseEntity.created(location).body(ApiResponse.success("Appointment booked Successfully", response));

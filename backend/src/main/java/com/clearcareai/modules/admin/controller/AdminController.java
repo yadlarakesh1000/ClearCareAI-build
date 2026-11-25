@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.clearcareai.common.ApiResponse;
 import com.clearcareai.common.AppConstants;
 import com.clearcareai.common.PagedResponse;
-import com.clearcareai.modules.Appointment.dto.AppointmentResponseDto;
+import com.clearcareai.modules.appointment.dto.AppointmentResponseDto;
 import com.clearcareai.modules.admin.dto.AdminDashboardDto;
 import com.clearcareai.modules.admin.dto.AdminUserDto;
 import com.clearcareai.modules.admin.service.AdminService;

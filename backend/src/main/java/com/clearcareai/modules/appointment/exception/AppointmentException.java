@@ -1,4 +1,4 @@
-package com.clearcareai.modules.Appointment.exception;
+package com.clearcareai.modules.appointment.exception;
 
 import com.clearcareai.exception.BadRequestException;
 

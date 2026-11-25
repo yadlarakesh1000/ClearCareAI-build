@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/voice-review")
+@RequestMapping("/api/voice-reviews")
 public class VoiceReviewController {
     private final VoiceReviewService voiceReviewService;
 

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,10 +16,10 @@ import org.springframework.util.StringUtils;
 import com.clearcareai.common.PagedResponse;
 import com.clearcareai.exception.BadRequestException;
 import com.clearcareai.exception.ResourceNotFoundException;
-import com.clearcareai.modules.Appointment.Repository.AppointmentRepository;
-import com.clearcareai.modules.Appointment.dto.AppointmentResponseDto;
-import com.clearcareai.modules.Appointment.entity.Appointment;
-import com.clearcareai.modules.Appointment.mapper.AppointmentMapper;
+import com.clearcareai.modules.appointment.repository.AppointmentRepository;
+import com.clearcareai.modules.appointment.dto.AppointmentResponseDto;
+import com.clearcareai.modules.appointment.entity.Appointment;
+import com.clearcareai.modules.appointment.mapper.AppointmentMapper;
 import com.clearcareai.modules.admin.dto.AdminDashboardDto;
 import com.clearcareai.modules.admin.dto.AdminUserDto;
 import com.clearcareai.modules.admin.service.AdminService;
@@ -74,11 +75,16 @@ public class AdminServiceImpl implements AdminService{
 				userPage.isLast());
 	}
    
+	// the public doctor list is cached, so clear it when an account is switched on or off
 	@Transactional
+	@CacheEvict(value = "doctors", allEntries = true)
 	@Override
 	public AdminUserDto toggleUserActive(Long userId) {
 		   User user = userRepository.findById(userId).orElseThrow(()-> new ResourceNotFoundException("User", "id", userId));
-		   if(!Boolean.TRUE.equals(user.getIsActive())) {
+		   if(Boolean.TRUE.equals(user.getIsActive())) {
+			    user.setIsActive(false);
+		   }
+		   else {
 			    user.setIsActive(true);
 		   }
 		   User saved = userRepository.save(user);

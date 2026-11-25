@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.clearcareai.modules.Appointment.entity.Appointment;
+import com.clearcareai.modules.appointment.entity.Appointment;
 import com.clearcareai.modules.doctor.entity.Doctor;
 import com.clearcareai.modules.patient.entity.Patient;
 

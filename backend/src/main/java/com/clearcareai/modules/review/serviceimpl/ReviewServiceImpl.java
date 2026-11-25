@@ -1,4 +1,4 @@
-package com.clearcareai.modules.review.serviceImpl;
+package com.clearcareai.modules.review.serviceimpl;
 
 
 import java.time.LocalDateTime;
